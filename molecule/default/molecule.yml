@@ -1,0 +1,23 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+lint: |
+  set -e
+  yamllint .
+  ansible-lint --force-color
+platforms:
+  - name: ubuntu-focal
+    image: ubuntu:focal
+    dockerfile: Dockerfile.j2
+    privileged: true
+    volumes:
+      - "/sys/fs/cgroup:/sys/fs/cgroup:rw"
+    command: "/sbin/init"
+provisioner:
+  name: ansible
+verifier:
+  name: testinfra
+  lint:
+    name: flake8

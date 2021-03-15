@@ -1,0 +1,15 @@
+- name: Install ntp
+  apt:
+    name: ntp
+
+- name: Enable ntp
+  service:
+    name: ntp
+    enabled: true
+    state: started
+
+- name: Allow 123/tcp
+  ufw:
+    rule: allow
+    port: ntp
+    direction: out

@@ -1,0 +1,10 @@
+---
+- name: apt-get update
+  apt:
+    update_cache: yes
+- import_tasks: firewall.yml
+- import_tasks: ntp.yml
+- import_tasks: sshd.yml
+- import_tasks: 2fa.yml
+- import_tasks: updates.yml
+- import_tasks: users.yml

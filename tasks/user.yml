@@ -1,0 +1,38 @@
+- name: Check if ohmyzsh directory exists
+  stat:
+    path: "$HOME/.oh-my-zsh"
+  become: yes
+  become_user: "{{ user.name }}"
+  register: ohmyzsh_dir
+
+- name: Install ohmyzsh
+  command: /tmp/ohmyzsh.sh
+  become: yes
+  become_user: "{{ user.name }}"
+  when: user.shell == '/bin/zsh' and not ohmyzsh_dir.stat.exists
+
+- name: Install homeshick
+  git:
+    repo: "https://github.com/andsens/homeshick.git"
+    dest: "$HOME/.homesick/repos/homeshick"
+    version: master
+  become: yes
+  become_user: "{{ user.name }}"
+  when: user.dotfiles is defined and user.dotfiles
+
+- name: Check if dotfiles directory exists
+  stat:
+    path: "$HOME/.homesick/repos/dotfiles"
+  become: yes
+  become_user: "{{ user.name }}"
+  register: dotfiles_dir
+
+- name: Install dotfiles
+  shell: |
+    set -euo pipefail
+    echo "y y" | $HOME/.homesick/repos/homeshick/bin/homeshick clone {{ item.dotfiles }}
+  args:
+    executable: /bin/bash
+  become: yes
+  become_user: "{{ user.name }}"
+  when: item.dotfiles is defined and user.dotfiles and not dotfiles_dir.stat.exists

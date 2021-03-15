@@ -1,0 +1,9 @@
+- name: Install Google PAM Module
+  apt: 
+    name: libpam-google-authenticator
+
+- name: Enabled 2FA
+  lineinfile:
+    path: "/etc/pam.d/common-session"
+    line: "auth required pam_google_authenticator.so nullok"
+    state: present

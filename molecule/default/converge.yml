@@ -1,0 +1,16 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include ansible-base"
+      include_role:
+        name: "ansible-base"
+  vars:
+    users:
+      - name: test1
+        dotfiles: "mtpettyp/dotfiles"
+        password: "$5$YlQw6PQuKAiSBljo$8Fkm3Ud4rmwaM7bE6mNsf6gOSrddjFUKGJw.j80fOU8"
+        shell: "/bin/zsh"
+      - name: test2
+        password: "$5$YlQw6PQuKAiSBljo$8Fkm3Ud4rmwaM7bE6mNsf6gOSrddjFUKGJw.j80fOU8"
+        shell: "/bin/bash"
