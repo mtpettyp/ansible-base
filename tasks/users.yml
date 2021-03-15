@@ -10,6 +10,7 @@
     password: "{{ item.password }}"
     shell: "{{ item.shell }}"
   loop: "{{ users }}"
+  when: users is defined
 
 - name: Download ohmyzsh
   get_url:
@@ -22,3 +23,4 @@
   vars:
     user: "{{ item }}"
   loop: "{{ users }}"
+  when: users is defined
