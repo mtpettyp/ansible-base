@@ -6,6 +6,7 @@
   copy:
     src: "50unattended-upgrades"
     dest: "/etc/apt/apt.conf.d/50unattended-upgrades"
+    mode: 0644
 
 - name: Configure update frequency
   lineinfile:
