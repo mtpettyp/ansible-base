@@ -12,12 +12,6 @@
   loop: "{{ users }}"
   when: users is defined
 
-- name: Download ohmyzsh
-  get_url:
-    url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
-    dest: /tmp/ohmyzsh.sh
-    mode: o+rwx
-
 - name: Setup users
   include_tasks: user.yml
   vars:

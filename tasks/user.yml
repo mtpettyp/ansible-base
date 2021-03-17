@@ -6,7 +6,11 @@
   register: ohmyzsh_dir
 
 - name: Install ohmyzsh
-  command: sh -c "/tmp/ohmyzsh.sh"
+  git:
+    repo: "https://github.com/robbyrussell/oh-my-zsh.git"
+    dest: "$HOME/.oh-my-zsh"
+    depth: 1
+    version: master
   become: yes
   become_user: "{{ user.name }}"
   when: user.shell == '/bin/zsh' and not ohmyzsh_dir.stat.exists
