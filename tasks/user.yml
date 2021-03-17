@@ -40,3 +40,10 @@
   become: yes
   become_user: "{{ user.name }}"
   when: item.dotfiles is defined and user.dotfiles and not dotfiles_dir.stat.exists
+
+- name: Set authorized keys
+  authorized_key:
+    user: "{{ user.name }}"
+    state: present
+    key: "{{ user.key_url }}"
+  when: user.key_url is defined
