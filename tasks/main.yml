@@ -4,8 +4,14 @@
     update_cache: yes
     upgrade: safe
 - import_tasks: firewall.yml
+  tags: firewall
 - import_tasks: ntp.yml
+  tags: ntp
 - import_tasks: sshd.yml
+  tags: sshd
 - import_tasks: 2fa.yml
+  tags: 2fa
 - import_tasks: updates.yml
+  tags: updates
 - import_tasks: users.yml
+  tags: users

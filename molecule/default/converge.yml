@@ -5,6 +5,8 @@
     - name: "Include ansible-base"
       include_role:
         name: "ansible-base"
+      tags:
+        - always
   vars:
     users:
       - name: test1
