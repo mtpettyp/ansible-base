@@ -6,7 +6,7 @@
   register: ohmyzsh_dir
 
 - name: Install ohmyzsh
-  command: /tmp/ohmyzsh.sh
+  command: sh -c "/tmp/ohmyzsh.sh"
   become: yes
   become_user: "{{ user.name }}"
   when: user.shell == '/bin/zsh' and not ohmyzsh_dir.stat.exists
