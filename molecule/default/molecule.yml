@@ -8,7 +8,7 @@ lint: |
   yamllint .
   ansible-lint --force-color
 platforms:
-  - name: ubuntu-focal
+  - name: ubuntu-focal-base
     image: ubuntu:focal
     dockerfile: Dockerfile.j2
     privileged: true
