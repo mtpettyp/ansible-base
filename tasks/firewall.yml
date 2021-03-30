@@ -4,20 +4,26 @@
 
 - name: Enable ufw
   ufw:
-    state: enabled    
+    state: enabled
 
 - name: Deny incoming
   ufw:
     direction: incoming
     policy: deny
+  notify: Reload ufw
 
 - name: Allow outgoing
   ufw:
     direction: outgoing
     policy: allow
+  notify: Reload ufw
 
 - name: Allow ssh
   ufw:
     rule: limit
     port: ssh
     proto: tcp
+  notify: Reload ufw
+
+- name: Flush handlers
+  meta: flush_handlers

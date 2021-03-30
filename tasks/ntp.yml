@@ -13,3 +13,4 @@
     rule: allow
     port: ntp
     direction: out
+  notify: Reload ufw

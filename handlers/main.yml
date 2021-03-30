@@ -4,3 +4,7 @@
   service:
     name: sshd
     state: restarted
+
+- name: Reload ufw
+  ufw:
+    state: reloaded
