@@ -1,3 +1,12 @@
+---
+- name: Create $HOME/.ansible/tmp directory
+  file:
+    path: "$HOME/.ansible/tmp"
+    state: directory
+    mode: 0700
+  become: yes
+  become_user: "{{ user.name }}"
+
 - name: Check if ohmyzsh directory exists
   stat:
     path: "$HOME/.oh-my-zsh"
