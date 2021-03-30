@@ -15,10 +15,13 @@
 - name: Add to sudoers
   user:
     name: "{{ item.name }}"
-    group: "sudo"
+    groups: "sudo"
     append: yes
   loop: "{{ users }}"
-  when: users is defined and item.sudo is defined and item.sudo
+  when:
+    - users is defined
+    - item.sudo is defined
+    - item.sudo
 
 - name: Setup users
   include_tasks: user.yml
