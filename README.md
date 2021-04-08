@@ -25,6 +25,7 @@ Example Playbook
 
 ```yaml
 - hosts: all
+  vars:
     users:
       - name: test1
         dotfiles: "username/dotfiles"
