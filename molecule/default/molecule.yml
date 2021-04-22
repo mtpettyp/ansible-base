@@ -14,7 +14,7 @@ platforms:
     volumes:
       - "/sys/fs/cgroup:/sys/fs/cgroup:rw"
     published_ports:
-      - 0.0.0.0:22:22/tcp
+      - 0.0.0.0:8022:22/tcp
     command: "/sbin/init"
 provisioner:
   name: ansible
