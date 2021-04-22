@@ -13,6 +13,8 @@ platforms:
     privileged: true
     volumes:
       - "/sys/fs/cgroup:/sys/fs/cgroup:rw"
+    published_ports:
+      - 0.0.0.0:22:22/tcp
     command: "/sbin/init"
 provisioner:
   name: ansible
@@ -20,6 +22,8 @@ verifier:
   name: testinfra
   lint:
     name: flake8
+  options:
+    s: true
 scenario:
   name: default
   create_sequence:

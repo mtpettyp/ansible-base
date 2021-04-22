@@ -1,9 +1,36 @@
 - name: Install Google PAM Module
-  apt: 
+  apt:
     name: libpam-google-authenticator
 
 - name: Enabled 2FA
   lineinfile:
-    path: "/etc/pam.d/common-session"
+    path: "/etc/pam.d/sshd"
+    insertafter: "EOF"
     line: "auth required pam_google_authenticator.so nullok"
+    state: present
+
+- name: Enabled 2FA
+  lineinfile:
+    path: "/etc/pam.d/sshd"
+    insertafter: "auth required pam_google_authenticator.so nullok"
+    line: "auth required pam_permit.so"
+    state: present
+
+- name: Configure sshd for 2FA
+  lineinfile:
+    path: "/etc/ssh/sshd_config"
+    regex: "^(#)?{{ item.key }}"
+    line: "{{ item.key }} {{ item.value }}"
+    state: present
+  loop:
+    - { key: "ChallengeResponseAuthentication", value: "yes" }
+    - { key: "AuthenticationMethods", value: "publickey,password publickey,keyboard-interactive" }
+  notify:
+    - Restart sshd
+
+- name: Tell PAM not to prompt for password
+  lineinfile:
+    path: "/etc/pam.d/sshd"
+    regex: "@include common-auth"
+    line: "#@include common-auth"
     state: present
