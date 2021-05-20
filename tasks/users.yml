@@ -11,6 +11,7 @@
     shell: "{{ item.shell }}"
   loop: "{{ users }}"
   when: users is defined
+  no_log: True
 
 - name: Add to sudoers
   user:
