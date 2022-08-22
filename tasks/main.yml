@@ -3,6 +3,8 @@
   ansible.builtin.apt:
     cache_valid_time: 86400
     update_cache: yes
+- import_tasks: locales.yml
+  tags: locales
 - import_tasks: firewall.yml
   tags: firewall
 - import_tasks: ntp.yml

@@ -24,7 +24,7 @@
     state: present
   loop:
     - { key: "ChallengeResponseAuthentication", value: "yes" }
-    - { key: "AuthenticationMethods", value: "publickey,password publickey,keyboard-interactive" }
+    - { key: "AuthenticationMethods", value: "publickey,keyboard-interactive" }
   notify:
     - Restart sshd
 

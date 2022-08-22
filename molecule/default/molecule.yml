@@ -7,8 +7,8 @@ lint: |
   ansible-lint --force-color
   flake8
 platforms:
-  - name: ubuntu-focal-base
-    image: ubuntu:focal
+  - name: ubuntu-jammy-base
+    image: ubuntu:jammy
     dockerfile: Dockerfile.j2
     privileged: true
     volumes:
