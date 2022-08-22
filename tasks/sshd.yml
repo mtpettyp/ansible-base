@@ -1,15 +1,15 @@
 - name: Install sshd
-  apt:
+  ansible.builtin.apt:
     name: openssh-server
 
 - name: Enable sshd
-  service:
+  ansible.builtin.service:
     name: ssh
     enabled: true
     state: started
 
 - name: Harden sshd
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: "/etc/ssh/sshd_config"
     regex: "^(#)?{{ item.key }}"
     line: "{{ item.key }} {{ item.value }}"
@@ -25,13 +25,13 @@
     - Restart sshd
 
 - name: Set allowed users
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: "/etc/ssh/sshd_config"
     regex: "^(#)?{{ item.key }}"
     line: "{{ item.key }} {{ item.value }}"
     state: present
   loop:
-    - { key: "AllowUsers", value: "{{ users | map(attribute='name')| join(' ') }}" }
+    - { key: "AllowUsers", value: "{{ users | map(attribute='name') | join(' ') }}" }
   notify:
     - Restart sshd
   when: users is defined

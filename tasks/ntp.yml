@@ -1,15 +1,15 @@
 - name: Install ntp
-  apt:
+  ansible.builtin.apt:
     name: ntp
 
 - name: Enable ntp
-  service:
+  ansible.builtin.service:
     name: ntp
     enabled: true
     state: started
 
 - name: Allow 123/tcp
-  ufw:
+  ansible.builtin.ufw:
     rule: allow
     port: ntp
     direction: out

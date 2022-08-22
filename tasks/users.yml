@@ -1,11 +1,11 @@
 - name: Install dependencies
-  apt:
+  ansible.builtin.apt:
     name:
       - zsh
       - git
 
 - name: Create users
-  user:
+  ansible.builtin.user:
     name: "{{ item.name }}"
     password: "{{ item.password }}"
     shell: "{{ item.shell }}"
@@ -14,7 +14,7 @@
   no_log: True
 
 - name: Add to sudoers
-  user:
+  ansible.builtin.user:
     name: "{{ item.name }}"
     groups: "sudo"
     append: yes

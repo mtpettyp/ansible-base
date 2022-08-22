@@ -3,18 +3,18 @@
 - name: Configure each user
   block:
     - name: Create $HOME/.ansible/tmp directory
-      file:
+      ansible.builtin.file:
         path: "$HOME/.ansible/tmp"
         state: directory
         mode: 0700
 
     - name: Check if ohmyzsh directory exists
-      stat:
+      ansible.builtin.stat:
         path: "$HOME/.oh-my-zsh"
       register: ohmyzsh_dir
 
     - name: Install ohmyzsh
-      git:
+      ansible.builtin.git:
         repo: "https://github.com/robbyrussell/oh-my-zsh.git"
         dest: "$HOME/.oh-my-zsh"
         depth: 1
@@ -22,19 +22,19 @@
       when: user.shell == '/bin/zsh' and not ohmyzsh_dir.stat.exists
 
     - name: Install homeshick
-      git:
+      ansible.builtin.git:
         repo: "https://github.com/andsens/homeshick.git"
         dest: "$HOME/.homesick/repos/homeshick"
         version: master
       when: user.dotfiles is defined and user.dotfiles
 
     - name: Check if dotfiles directory exists
-      stat:
+      ansible.builtin.stat:
         path: "$HOME/.homesick/repos/dotfiles"
       register: dotfiles_dir
 
     - name: Install dotfiles
-      shell: |
+      ansible.builtin.shell: |
         set -euo pipefail
         echo "y y" | $HOME/.homesick/repos/homeshick/bin/homeshick clone {{ item.dotfiles }}
       args:
@@ -42,7 +42,7 @@
       when: item.dotfiles is defined and user.dotfiles and not dotfiles_dir.stat.exists
 
     - name: Set authorized keys
-      authorized_key:
+      ansible.builtin.authorized_key:
         user: "{{ user.name }}"
         state: present
         key: "{{ user.key_url }}"

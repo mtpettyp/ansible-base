@@ -1,29 +1,29 @@
 - name: Install ufw
-  apt:
+  ansible.builtin.apt:
     name: ufw
 
 - name: Enable ufw
-  ufw:
+  ansible.builtin.ufw:
     state: enabled
 
 - name: Deny incoming
-  ufw:
+  ansible.builtin.ufw:
     direction: incoming
     policy: deny
   notify: Reload ufw
 
 - name: Allow outgoing
-  ufw:
+  ansible.builtin.ufw:
     direction: outgoing
     policy: allow
   notify: Reload ufw
 
 - name: Allow ssh
-  ufw:
+  ansible.builtin.ufw:
     rule: limit
     port: ssh
     proto: tcp
   notify: Reload ufw
 
 - name: Flush handlers
-  meta: flush_handlers
+  ansible.builtin.meta: flush_handlers

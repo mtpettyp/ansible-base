@@ -1,8 +1,8 @@
 ---
 - name: apt-get update
-  apt:
+  ansible.builtin.apt:
     cache_valid_time: 86400
-    upgrade: safe
+    update_cache: yes
 - import_tasks: firewall.yml
   tags: firewall
 - import_tasks: ntp.yml
