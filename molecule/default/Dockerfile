@@ -1,0 +1,20 @@
+
+FROM ubuntu:22.04
+
+RUN apt-get update
+
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
+    aptitude \
+    bash \
+    ca-certificates \
+    curl \
+    iproute2 \
+    python3 \
+    python3-apt \
+    procps \
+    sudo \
+    systemd \
+    systemd-sysv \
+    vim
+
+RUN apt-get clean
