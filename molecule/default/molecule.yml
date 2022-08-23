@@ -8,8 +8,8 @@ lint: |
   flake8
 platforms:
   - name: ubuntu-jammy-base
-    image: ubuntu:jammy
-    dockerfile: Dockerfile.j2
+    image: ubuntu:22.04
+    dockerfile: Dockerfile
     privileged: true
     volumes:
       - "/sys/fs/cgroup:/sys/fs/cgroup:rw"
