@@ -1,6 +1,6 @@
 ansible==6.2.0
 ansible-lint==6.5.0
-flake8==5.0.4
+flake8==5.0.3
 molecule==4.0.1
 molecule-docker==2.0.0
 pytest==7.1.2

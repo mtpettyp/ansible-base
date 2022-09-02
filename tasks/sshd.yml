@@ -18,6 +18,7 @@
     - { key: "ClientAliveInterval", value: "300" }
     - { key: "MaxAuthTries", value: "3" }
     - { key: "PasswordAuthentication", value: "no" }
+    - { key: "KbdInteractiveAuthentication", value: "yes" }
     - { key: "PermitEmptyPasswords", value: "no" }
     - { key: "PermitRootLogin", value: "no" }
     - { key: "Protocol", value: "2" }
