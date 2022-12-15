@@ -25,7 +25,7 @@
     - item.sudo
 
 - name: Setup users
-  include_tasks: user.yml
+  ansible.builtin.include_tasks: user.yml
   vars:
     user: "{{ item }}"
   loop: "{{ users }}"

@@ -3,23 +3,23 @@
     name: ufw
 
 - name: Enable ufw
-  ansible.builtin.ufw:
+  community.general.ufw:
     state: enabled
 
 - name: Deny incoming
-  ansible.builtin.ufw:
+  community.general.ufw:
     direction: incoming
     policy: deny
   notify: Reload ufw
 
 - name: Allow outgoing
-  ansible.builtin.ufw:
+  community.general.ufw:
     direction: outgoing
     policy: allow
   notify: Reload ufw
 
 - name: Allow ssh
-  ansible.builtin.ufw:
+  community.general.ufw:
     rule: limit
     port: ssh
     proto: tcp

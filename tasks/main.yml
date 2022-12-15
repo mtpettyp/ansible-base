@@ -3,17 +3,24 @@
   ansible.builtin.apt:
     cache_valid_time: 86400
     update_cache: yes
-- import_tasks: locales.yml
+- name: Import locales tasks
+  ansible.builtin.import_tasks: locales.yml
   tags: locales
-- import_tasks: firewall.yml
+- name: Import firewall tasks
+  ansible.builtin.import_tasks: firewall.yml
   tags: firewall
-- import_tasks: ntp.yml
+- name: Import ntp tasks
+  ansible.builtin.import_tasks: ntp.yml
   tags: ntp
-- import_tasks: sshd.yml
+- name: Import ssh tasks
+  ansible.builtin.import_tasks: sshd.yml
   tags: sshd
-- import_tasks: 2fa.yml
+- name: Import 2fa tasks
+  ansible.builtin.import_tasks: 2fa.yml
   tags: 2fa
-- import_tasks: updates.yml
+- name: Import update tasks
+  ansible.builtin.import_tasks: updates.yml
   tags: updates
-- import_tasks: users.yml
+- name: Import user tasks
+  ansible.builtin.import_tasks: users.yml
   tags: users

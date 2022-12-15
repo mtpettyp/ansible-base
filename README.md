@@ -38,6 +38,21 @@ Example Playbook
 ```
 
 
+Development
+-----------
+
+Poetry is used to manage this project's Python dependencies
+
+### Installation
+`poetry install --no-root`
+
+### Running
+`poetry run molecule test`
+
+Alternative, you can create a shell by running `poetry shell` and run the `molecule` commands directly
+
+
+
 License
 -------
 

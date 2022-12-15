@@ -9,7 +9,7 @@
     state: started
 
 - name: Allow 123/tcp
-  ansible.builtin.ufw:
+  community.general.ufw:
     rule: allow
     port: ntp
     direction: out

@@ -6,5 +6,5 @@
     state: restarted
 
 - name: Reload ufw
-  ansible.builtin.ufw:
+  community.general.ufw:
     state: reloaded
