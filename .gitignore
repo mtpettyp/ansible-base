@@ -5,3 +5,5 @@ __pycache__/
 
 *.pyc
 pytestdebug.log
+
+.claude/settings.local.json

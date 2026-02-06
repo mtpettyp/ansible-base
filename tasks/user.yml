@@ -43,6 +43,19 @@
         executable: /bin/bash
       when: item.dotfiles is defined and user.dotfiles and not dotfiles_dir.stat.exists
 
+    - name: Check if atuin is installed
+      ansible.builtin.stat:
+        path: "$HOME/.atuin/bin/atuin"
+      register: atuin_bin
+
+    - name: Install atuin
+      ansible.builtin.shell: |
+        set -euo pipefail
+        curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh
+      args:
+        executable: /bin/bash
+      when: not atuin_bin.stat.exists
+
     - name: Set authorized keys
       ansible.posix.authorized_key:
         user: "{{ user.name }}"
