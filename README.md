@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/mtpettyp/ansible-base.svg?style=svg)](https://circleci.com/gh/mtpettyp/ansible-base)
+[![Test](https://github.com/mtpettyp/ansible-base/actions/workflows/test.yml/badge.svg)](https://github.com/mtpettyp/ansible-base/actions/workflows/test.yml)
 
 
 
