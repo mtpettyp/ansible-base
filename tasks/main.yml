@@ -2,7 +2,7 @@
 - name: Update packages
   ansible.builtin.apt:
     cache_valid_time: 86400
-    update_cache: yes
+    update_cache: true
 - name: Import locales tasks
   ansible.builtin.import_tasks: locales.yml
   tags: locales

@@ -11,18 +11,18 @@
     shell: "{{ item.shell }}"
   loop: "{{ users }}"
   when: users is defined
-  no_log: True
+  no_log: true
 
 - name: Add to sudoers
   ansible.builtin.user:
     name: "{{ item.name }}"
     groups: "sudo"
-    append: yes
+    append: true
   loop: "{{ users }}"
   when:
     - users is defined
     - item.sudo is defined
-    - item.sudo
+    - item.sudo | bool
 
 - name: Setup users
   ansible.builtin.include_tasks: user.yml

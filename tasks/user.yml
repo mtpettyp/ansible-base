@@ -1,7 +1,7 @@
 ---
 
 - name: Configure each user
-  become: yes
+  become: true
   become_user: "{{ user.name }}"
   block:
     - name: Create $HOME/.ansible/tmp directory
@@ -28,7 +28,7 @@
         repo: "https://github.com/andsens/homeshick.git"
         dest: "$HOME/.homesick/repos/homeshick"
         version: master
-      when: user.dotfiles is defined and user.dotfiles
+      when: user.dotfiles is defined and user.dotfiles | length > 0
 
     - name: Check if dotfiles directory exists
       ansible.builtin.stat:
@@ -38,10 +38,10 @@
     - name: Install dotfiles
       ansible.builtin.shell: |
         set -euo pipefail
-        echo "y y" | $HOME/.homesick/repos/homeshick/bin/homeshick clone {{ item.dotfiles }}
+        echo "y y" | $HOME/.homesick/repos/homeshick/bin/homeshick clone {{ user.dotfiles }}
       args:
         executable: /bin/bash
-      when: item.dotfiles is defined and user.dotfiles and not dotfiles_dir.stat.exists
+      when: user.dotfiles is defined and user.dotfiles | length > 0 and not dotfiles_dir.stat.exists
 
     - name: Check if atuin is installed
       ansible.builtin.stat:
